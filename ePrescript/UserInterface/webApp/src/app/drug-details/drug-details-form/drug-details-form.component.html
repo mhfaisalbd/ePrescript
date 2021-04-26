@@ -1,0 +1,43 @@
+<form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="id"
+    value="service.formData.id">
+    <div class="form-row row">
+        <div class="form-group col-md-6">
+            <label>GENERIC NAME</label>
+            <input type="text" class="form-control form-control-lg" placeholder="Omeprazol"
+            name="genericName" #genericName="ngModel" [(ngModel)]="service.formData.genericName" 
+            required [class.invalid]="genericName.invalid && genericName.touched">
+        </div>
+        <div class="form-group col-md-6">
+            <label>TRADE NAME</label>
+            <input type="text" class="form-control form-control-lg" placeholder="Lossectil"
+            name="tradeName" #tradeName="ngModel" [(ngModel)]= "service.formData.tradeName" 
+            required  [class.invalid]="tradeName.invalid && tradeName.touched">
+        </div>
+    </div>
+    <div class="form-row row">
+        <div class="form-group col-md-4">
+            <label>BATCH NO.</label>
+            <input type="text" class="form-control form-control-lg" placeholder="101001"
+            name="batchNo" #batchNo="ngModel" [(ngModel)]= "service.formData.batchNo" 
+            required  [class.invalid]="batchNo.invalid && batchNo.touched">
+        </div>
+        <div class="form-group col-md-4">
+            <label>DRUG TYPE</label>
+            <select class="form-control form-control-lg" placeholder="omeprazol"
+            name="drugType" #drugType="ngModel" [(ngModel)]= "service.formData.drugType">
+            <option *ngFor="let drugType of drugTypes" [value]="drugType">{{drugTypeKeys[drugType]}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label>UNIT</label>
+            <input type="text" class="form-control form-control-lg" placeholder="20 Mg"
+            name="unit" #unit="ngModel" [(ngModel)]= "service.formData.unit" 
+            required  [class.invalid]="unit.invalid && unit.touched">
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="SUBMIT" class="btn btn-g btn-primary btn-block" [disabled]="form.invalid">
+    </div>
+
+</form>
