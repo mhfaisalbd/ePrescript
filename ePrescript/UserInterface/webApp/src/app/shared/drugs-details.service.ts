@@ -21,6 +21,10 @@ export class DrugsDetailsService {
     this.formData.drugType = parseInt(this.formData.drugType.toString());
     return this.http.put(`${this.baseUrl}/${this.formData.id}`, this.formData);
   }
+  deleteDrugDetails(id: string){
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+
   refreshList(){
     this.http.get(this.baseUrl)
     .toPromise().then(
