@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DrugType } from '../shared/drug-type.enum';
+import { DrugsDetailsService } from '../shared/drugs-details.service';
 
 @Component({
   selector: 'app-drug-details',
@@ -8,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrugDetailsComponent implements OnInit {
 
-  constructor() { }
+  public drugTypeKeys = Object.keys(DrugType);
+  constructor(public service: DrugsDetailsService) { }
 
   ngOnInit(): void {
+    this.service.refreshList();
   }
 
 }

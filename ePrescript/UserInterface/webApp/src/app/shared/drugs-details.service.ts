@@ -11,9 +11,16 @@ export class DrugsDetailsService {
   constructor(private http: HttpClient) { }
   readonly baseUrl = "http://localhost:31257/api/Drugs";
   formData: DrugsDetails = new DrugsDetails();
+  list: DrugsDetails[];
 
   postDrugDetails(){
     this.formData.drugType = parseInt(this.formData.drugType.toString());
     return this.http.post(this.baseUrl, this.formData);
+  }
+  refreshList(){
+    this.http.get(this.baseUrl)
+    .toPromise().then(
+      res=>this.list = res as DrugsDetails[]
+    )
   }
 }
