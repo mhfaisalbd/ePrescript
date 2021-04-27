@@ -1,0 +1,32 @@
+<div class="jumbotron py-3">
+    <h2 class="display-4 text-center">Drug Details Entry</h2>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <app-drug-details-form></app-drug-details-form>
+    </div>
+    <div class="col-md-8">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>#BATCH</th>
+                    <th>GENERIC NAME</th>
+                    <th>TRADE NAME</th>
+                    <th>TYPE</th>
+                    <th>UNIT</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dd of service.list">
+                    <td (click)="populateForm(dd)">{{dd.batchNo}}</td>
+                    <td (click)="populateForm(dd)" >{{dd.genericName}}</td>
+                    <td (click)="populateForm(dd)">{{dd.tradeName}}</td>
+                    <td (click)="populateForm(dd)">{{drugTypeKeys[dd.drugType]}}</td>
+                    <td (click)="populateForm(dd)">{{dd.unit}}</td>
+                    <td><span (click)="onDelete(dd.id)"><i class="far fa-trash-alt fa-lg text-danger"></i></span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
