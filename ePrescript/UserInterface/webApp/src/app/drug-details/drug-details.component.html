@@ -19,11 +19,11 @@
             </thead>
             <tbody>
                 <tr *ngFor="let dd of service.list">
-                    <td>{{dd.batchNo}}</td>
-                    <td>{{dd.genericName}}</td>
-                    <td>{{dd.tradeName}}</td>
-                    <td>{{drugTypeKeys[dd.drugType]}}</td>
-                    <td>{{dd.unit}}</td>
+                    <td (click)="populateForm(dd)">{{dd.batchNo}}</td>
+                    <td (click)="populateForm(dd)" >{{dd.genericName}}</td>
+                    <td (click)="populateForm(dd)">{{dd.tradeName}}</td>
+                    <td (click)="populateForm(dd)">{{drugTypeKeys[dd.drugType]}}</td>
+                    <td (click)="populateForm(dd)">{{dd.unit}}</td>
                     <td><span><i class="far fa-trash-alt fa-lg text-danger"></i></span></td>
                 </tr>
             </tbody>

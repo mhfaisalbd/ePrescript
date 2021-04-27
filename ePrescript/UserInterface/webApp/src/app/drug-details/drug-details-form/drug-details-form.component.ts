@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Guid } from 'guid-typescript';
 import { ToastrService } from 'ngx-toastr';
 import { DrugType } from 'src/app/shared/drug-type.enum';
 import { DrugsDetails } from 'src/app/shared/drugs-details.model';
@@ -23,10 +24,32 @@ export class DrugDetailsFormComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit(form: NgForm){
+    if(this.service.formData.id === Guid.EMPTY){
+      this.insertData(form);
+    }
+    else{
+      this.updateData(form);
+    }
+  }
+  insertData(form: NgForm){
     this.service.postDrugDetails().subscribe(
       res=>{
         this.resetForm(form);
+        this.service.refreshList();
         this.toastr.success('Added Drug Details', 'Success!')
+      },
+      err=>{
+        console.log(err);
+      }
+    );
+  }
+  
+  updateData(form: NgForm){
+    this.service.putDrugDetails().subscribe(
+      res=>{
+        this.resetForm(form);
+        this.service.refreshList();
+        this.toastr.info('Updated Drug Details', 'Success!')
       },
       err=>{
         console.log(err);
